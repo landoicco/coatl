@@ -5,14 +5,19 @@ from pygame.math import Vector2
 
 pygame.mixer.pre_init(44100, -16, 2, 512)
 pygame.init()
+
+# Paths to assets
+SPRITES_PATH = "assets/sprites/"
+ASSETS_PATH = "assets/"
+
 cell_size = 40
 cell_number = 20
 screen = pygame.display.set_mode((cell_number * cell_size, cell_number * cell_size))
-snake_icon = pygame.image.load('snake_icon.png')
+snake_icon = pygame.image.load(ASSETS_PATH + "snake_icon.png")
 pygame.display.set_icon(snake_icon)
-pygame.display.set_caption('Python by Lando (alpha v.1)')
+pygame.display.set_caption("Python by Lando | WIP")
 clock = pygame.time.Clock()
-apple = pygame.image.load('sprites/apple.png').convert_alpha()
+apple = pygame.image.load(SPRITES_PATH + "apple.png").convert_alpha()
 game_font = pygame.font.Font(None, 25)
 
 
@@ -22,37 +27,61 @@ class SNAKE:
         self.direction = Vector2(0, 0)
         self.new_block = False
 
-        self.head_up = pygame.image.load('sprites/head_up.png').convert_alpha()
-        self.head_down = pygame.image.load('sprites/head_down.png').convert_alpha()
-        self.head_right = pygame.image.load('sprites/head_right.png').convert_alpha()
-        self.head_left = pygame.image.load('sprites/head_left.png').convert_alpha()
+        self.head_up = pygame.image.load(SPRITES_PATH + "head_up.png").convert_alpha()
+        self.head_down = pygame.image.load(
+            SPRITES_PATH + "head_down.png"
+        ).convert_alpha()
+        self.head_right = pygame.image.load(
+            SPRITES_PATH + "head_right.png"
+        ).convert_alpha()
+        self.head_left = pygame.image.load(
+            SPRITES_PATH + "head_left.png"
+        ).convert_alpha()
 
-        self.tail_up = pygame.image.load('sprites/tail_up.png').convert_alpha()
-        self.tail_down = pygame.image.load('sprites/tail_down.png').convert_alpha()
-        self.tail_right = pygame.image.load('sprites/tail_right.png').convert_alpha()
-        self.tail_left = pygame.image.load('sprites/tail_left.png').convert_alpha()
+        self.tail_up = pygame.image.load(SPRITES_PATH + "tail_up.png").convert_alpha()
+        self.tail_down = pygame.image.load(
+            SPRITES_PATH + "tail_down.png"
+        ).convert_alpha()
+        self.tail_right = pygame.image.load(
+            SPRITES_PATH + "tail_right.png"
+        ).convert_alpha()
+        self.tail_left = pygame.image.load(
+            SPRITES_PATH + "tail_left.png"
+        ).convert_alpha()
 
-        self.body_vertical = pygame.image.load('sprites/body_vertical.png').convert_alpha()
-        self.body_horizontal = pygame.image.load('sprites/body_horizontal.png').convert_alpha()
+        self.body_vertical = pygame.image.load(
+            SPRITES_PATH + "body_vertical.png"
+        ).convert_alpha()
+        self.body_horizontal = pygame.image.load(
+            SPRITES_PATH + "body_horizontal.png"
+        ).convert_alpha()
 
-        self.body_tr = pygame.image.load('sprites/body_topright.png').convert_alpha()
-        self.body_tl = pygame.image.load('sprites/body_topleft.png').convert_alpha()
-        self.body_br = pygame.image.load('sprites/body_bottomright.png').convert_alpha()
-        self.body_bl = pygame.image.load('sprites/body_bottomleft.png').convert_alpha()
+        self.body_tr = pygame.image.load(
+            SPRITES_PATH + "body_topright.png"
+        ).convert_alpha()
+        self.body_tl = pygame.image.load(
+            SPRITES_PATH + "body_topleft.png"
+        ).convert_alpha()
+        self.body_br = pygame.image.load(
+            SPRITES_PATH + "body_bottomright.png"
+        ).convert_alpha()
+        self.body_bl = pygame.image.load(
+            SPRITES_PATH + "body_bottomleft.png"
+        ).convert_alpha()
 
         self.head = self.head_up
         self.tail = self.tail_up
         self.body_fragment = self.body_vertical
-        self.crunch_sound = pygame.mixer.Sound('apple_bite.ogg')
+        self.crunch_sound = pygame.mixer.Sound(ASSETS_PATH + "apple_bite.ogg")
 
     def draw_snake(self):
         self.update_head_graphics()
         self.update_tail_graphics()
 
         for index, block in enumerate(self.body):
-            block_rect = pygame.Rect(int(block.x * cell_size),
-                                     int(block.y * cell_size),
-                                     cell_size, cell_size)
+            block_rect = pygame.Rect(
+                int(block.x * cell_size), int(block.y * cell_size), cell_size, cell_size
+            )
             if index == 0:
                 screen.blit(self.head, block_rect)
             elif index == len(self.body) - 1:
@@ -65,13 +94,33 @@ class SNAKE:
                 elif previous_block.y == next_block.y:
                     screen.blit(self.body_horizontal, block_rect)
                 else:
-                    if previous_block.x == -1 and next_block.y == -1 or previous_block.y == -1 and next_block.x == -1:
+                    if (
+                        previous_block.x == -1
+                        and next_block.y == -1
+                        or previous_block.y == -1
+                        and next_block.x == -1
+                    ):
                         screen.blit(self.body_tl, block_rect)
-                    elif previous_block.x == -1 and next_block.y == 1 or previous_block.y == 1 and next_block.x == -1:
+                    elif (
+                        previous_block.x == -1
+                        and next_block.y == 1
+                        or previous_block.y == 1
+                        and next_block.x == -1
+                    ):
                         screen.blit(self.body_bl, block_rect)
-                    elif previous_block.x == 1 and next_block.y == -1 or previous_block.y == -1 and next_block.x == 1:
+                    elif (
+                        previous_block.x == 1
+                        and next_block.y == -1
+                        or previous_block.y == -1
+                        and next_block.x == 1
+                    ):
                         screen.blit(self.body_tr, block_rect)
-                    elif previous_block.x == 1 and next_block.y == 1 or previous_block.y == 1 and next_block.x == 1:
+                    elif (
+                        previous_block.x == 1
+                        and next_block.y == 1
+                        or previous_block.y == 1
+                        and next_block.x == 1
+                    ):
                         screen.blit(self.body_br, block_rect)
 
     def update_tail_graphics(self):
@@ -124,8 +173,12 @@ class FRUIT:
         self.randomize()
 
     def draw_fruit(self):
-        fruit_rect = pygame.Rect(int(self.pos.x * cell_size),
-                                 int(self.pos.y * cell_size), cell_size, cell_size)
+        fruit_rect = pygame.Rect(
+            int(self.pos.x * cell_size),
+            int(self.pos.y * cell_size),
+            cell_size,
+            cell_size,
+        )
         screen.blit(apple, fruit_rect)
 
     def randomize(self):
@@ -161,7 +214,10 @@ class MAIN:
                 self.fruit.randomize()
 
     def check_fail(self):
-        if not 0 <= self.snake.body[0].x < cell_number or not 0 <= self.snake.body[0].y < cell_number:
+        if (
+            not 0 <= self.snake.body[0].x < cell_number
+            or not 0 <= self.snake.body[0].y < cell_number
+        ):
             self.game_over()
         for block in self.snake.body[1:]:
             if block == self.snake.body[0]:
@@ -173,12 +229,16 @@ class MAIN:
             if row % 2 == 0:
                 for col in range(cell_number):
                     if col % 2 == 0:
-                        grass_rect = pygame.Rect(col * cell_size, row * cell_size, cell_size, cell_size)
+                        grass_rect = pygame.Rect(
+                            col * cell_size, row * cell_size, cell_size, cell_size
+                        )
                         pygame.draw.rect(screen, grass_color, grass_rect)
             else:
                 for col in range(cell_number):
                     if col % 2 != 0:
-                        grass_rect = pygame.Rect(col * cell_size, row * cell_size, cell_size, cell_size)
+                        grass_rect = pygame.Rect(
+                            col * cell_size, row * cell_size, cell_size, cell_size
+                        )
                         pygame.draw.rect(screen, grass_color, grass_rect)
 
     def game_over(self):
@@ -191,9 +251,12 @@ class MAIN:
         score_y = int(cell_size * cell_number - 15)
         score_rect = score_surface.get_rect(midbottom=(score_x, score_y))
         apple_rect = apple.get_rect(midright=(score_rect.left, score_rect.centery))
-        bg_rect = pygame.Rect(apple_rect.left, apple_rect.top,
-                              apple_rect.width + score_rect.width + 10,
-                              apple_rect.height)
+        bg_rect = pygame.Rect(
+            apple_rect.left,
+            apple_rect.top,
+            apple_rect.width + score_rect.width + 10,
+            apple_rect.height,
+        )
 
         pygame.draw.rect(screen, pygame.Color(187, 199, 61), bg_rect)
         screen.blit(score_surface, score_rect)
