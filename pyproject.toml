@@ -1,9 +1,12 @@
 [project]
-name = "PySnake"
+name = "Coatl"
 version = "0.1.0"
 description = "A classic snake like clone made with Python and Pygame"
 readme = "README.md"
 requires-python = ">=3.11"
+authors = [
+  {name = "Lando Icaza C.", email = "landoicco@gmail.com"}
+]
 
 dependencies = [
     "pygame>=2.6.1",
