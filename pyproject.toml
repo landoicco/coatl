@@ -1,9 +1,10 @@
 [project]
-name = "snake-pygame"
+name = "PySnake"
 version = "0.1.0"
-description = "Add your description here"
+description = "A classic snake like clone made with Python and Pygame"
 readme = "README.md"
 requires-python = ">=3.11"
+
 dependencies = [
     "pygame>=2.6.1",
 ]
