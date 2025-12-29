@@ -1,7 +1,7 @@
 import pygame
 
 from actors import *
-from core import Font, show_splash_screen
+from core import Color, Font, show_splash_screen
 
 
 class Game:
@@ -17,7 +17,7 @@ class Game:
         self.check_fail()
 
     def draw_elements(self):
-        self.draw_grass()
+        self.draw_background()
         self.fruit.draw_fruit()
         self.snake.draw_snake()
         self.draw_score()
@@ -42,8 +42,8 @@ class Game:
             if block == self.snake.body[0]:
                 self.game_over()
 
-    def draw_grass(self):
-        grass_color = pygame.Color(167, 99, 61)
+    def draw_background(self):
+        grass_color = Color.WALL_SECONDARY
         for row in range(self.configs.cell_number):
             if row % 2 == 0:
                 for col in range(self.configs.cell_number):

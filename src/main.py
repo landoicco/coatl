@@ -42,7 +42,7 @@ while True:
                 if main_game.snake.direction.x != -1:
                     main_game.snake.direction = Vector2(1, 0)
 
-    Configs.screen.fill(pygame.Color((164, 122, 61)))
+    Configs.screen.fill(Color.WALL_PRIMARY)
     main_game.draw_elements()
     pygame.display.update()
     Configs.clock.tick(60)

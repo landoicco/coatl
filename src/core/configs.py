@@ -37,3 +37,7 @@ class Color:
     BACKGROUND = (168, 184, 160)
     PRIMARY = (167, 109, 93)
     SECONDARY = (44, 44, 44)
+
+    # Wall
+    WALL_PRIMARY = (219, 217, 183)
+    WALL_SECONDARY = (245, 232, 216)
