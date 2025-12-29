@@ -22,14 +22,18 @@ class Configs:
     clock = pygame.time.Clock()
     apple = pygame.image.load(sprites_path + "apple.png").convert_alpha()
 
-    # Fonts
-    game_font = pygame.font.Font(assets_path + "AtkinsonHyperlegibleMono.ttf", 30)
-    subheader_font = pygame.font.Font(assets_path + "AtkinsonHyperlegibleMono.ttf", 15)
-    header_font = pygame.font.Font(assets_path + "AtkinsonHyperlegibleMono.ttf", 50)
-    header_font.set_bold(True)
+
+class Font:
+    GAME = pygame.font.Font(Configs.assets_path + "AtkinsonHyperlegibleMono.ttf", 30)
+    SUBHEADER = pygame.font.Font(
+        Configs.assets_path + "AtkinsonHyperlegibleMono.ttf", 15
+    )
+    HEADER = pygame.font.Font(Configs.assets_path + "AtkinsonHyperlegibleMono.ttf", 50)
+    HEADER.set_bold(True)
 
 
 class Color:
+    # Splash
     BACKGROUND = (168, 184, 160)
     PRIMARY = (167, 109, 93)
     SECONDARY = (44, 44, 44)

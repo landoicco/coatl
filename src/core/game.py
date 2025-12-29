@@ -1,7 +1,7 @@
 import pygame
 
 from actors import *
-from core import show_splash_screen
+from core import Font, show_splash_screen
 
 
 class Game:
@@ -75,7 +75,7 @@ class Game:
 
     def draw_score(self):
         score_text = str(len(self.snake.body) - 3)
-        score_surface = self.configs.game_font.render(score_text, True, (56, 74, 12))
+        score_surface = Font.GAME.render(score_text, True, (56, 74, 12))
         score_x = int(
             self.configs.cell_size * self.configs.cell_number
             - ((self.configs.cell_size * self.configs.cell_number) / 2)
