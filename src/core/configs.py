@@ -21,4 +21,4 @@ class Configs:
     pygame.display.set_caption("Python by Lando | WIP")
     clock = pygame.time.Clock()
     apple = pygame.image.load(sprites_path + "apple.png").convert_alpha()
-    game_font = pygame.font.Font(None, 25)
+    game_font = pygame.font.Font(assets_path + "AtkinsonHyperlegibleMono.ttf", 25)
