@@ -92,7 +92,7 @@ class Game:
             apple_rect.height,
         )
 
-        pygame.draw.rect(self.configs.screen, pygame.Color(187, 199, 61), bg_rect)
+        pygame.draw.rect(self.configs.screen, Color.BACKGROUND, bg_rect)
         self.configs.screen.blit(score_surface, score_rect)
         self.configs.screen.blit(self.configs.apple, apple_rect)
         pygame.draw.rect(self.configs.screen, (0, 0, 0), bg_rect, 2)
