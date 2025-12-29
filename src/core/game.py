@@ -1,6 +1,7 @@
 import pygame
 
 from actors import *
+from core import show_splash_screen
 
 
 class Game:
@@ -66,6 +67,10 @@ class Game:
                         pygame.draw.rect(self.configs.screen, grass_color, grass_rect)
 
     def game_over(self):
+        # Draw splash screen on game over
+        if len(self.snake.body) > 3:
+            show_splash_screen()
+
         self.snake.reset()
 
     def draw_score(self):
