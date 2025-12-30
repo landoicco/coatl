@@ -22,6 +22,9 @@ class Configs:
     clock = pygame.time.Clock()
     apple = pygame.image.load(sprites_path + "apple.png").convert_alpha()
 
+    # BG Music
+    pygame.mixer.music.load(assets_path + "gone-fishing.mp3")
+
 
 class Font:
     GAME = pygame.font.Font(Configs.assets_path + "AtkinsonHyperlegibleMono.ttf", 30)

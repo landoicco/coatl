@@ -11,6 +11,9 @@ class Game:
         self.snake = Snake(configs)
         self.fruit = Fruit(configs)
 
+        # Play bg music
+        pygame.mixer.music.play(-1)  # Loop
+
     def update(self):
         self.snake.move_snake()
         self.check_collisions()
