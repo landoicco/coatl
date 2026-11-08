@@ -1,9 +1,9 @@
-# Coatl 🐍
+![Coatl, a classic snake game](docs/banner.png)
 
 [![Build](https://github.com/landoicco/coatl/actions/workflows/build.yml/badge.svg?branch=master)](https://github.com/landoicco/coatl/actions/workflows/build.yml)
 [![Python](https://img.shields.io/badge/python-3.11%2B-blue?logo=python&logoColor=white)](https://www.python.org/downloads/)
 
-A polished, classic **Snake-like arcade game** built from scratch with Python and Pygame. 
+A polished, classic **Snake-like arcade game** built from scratch with Python and Pygame.
 
 This project serves as a learning milestone focused on clean code structure, environment reproducibility, audio integration, and modern development tooling.
 
@@ -81,4 +81,5 @@ uv run src/main.py
 
 ## 🎨 Credits & Assets
 * **Developed by:** Lando Icaza C. — [licaza.dev](https://licaza.dev)
+* **Tooling:** The original game was written by hand; the v2.0.0 polish (CI/CD pipeline, gameplay fixes, spritesheet refactor and docs) was done with [Claude Code](https://claude.com/claude-code) as a pair-programming assistant.
 * **Audio, Music & Graphics:** Sound effects, background music tracks, and visual templates were sourced from open-source creators on the [OpenGameArt](https://opengameart.org) community platform and utilized under free-to-use/open licenses.

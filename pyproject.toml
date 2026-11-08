@@ -1,7 +1,7 @@
 [project]
 name = "Coatl"
 version = "2.0.0"
-description = "A classic snake like clone made with Python and Pygame"
+description = "A classic Snake game made with Python and Pygame-CE"
 readme = "README.md"
 requires-python = ">=3.11"
 authors = [
