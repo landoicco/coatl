@@ -1,10 +1,5 @@
 # Coatl 🐍
 
-![Python Version](https://shields.io)
-![Pygame Version](https://shields.io)
-![Nix Flakes](https://shields.io)
-![Linter](https://shields.io)
-
 A polished, classic **Snake-like arcade game** built from scratch with Python and Pygame. 
 
 This project serves as a learning milestone focused on clean code structure, environment reproducibility, audio integration, and modern development tooling.
