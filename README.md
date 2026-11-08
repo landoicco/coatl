@@ -73,7 +73,7 @@ uv run src/main.py
 - [x] Add dynamic background audio tracks
 - [x] Overhaul general UI look, text scaling, and feel
 - [x] Setup a CI/CD Pipeline (GitHub Actions) to auto-build Windows (.exe) and Linux binaries
-- [ ] Optimize modular sprite rendering logic
+- [x] Optimize modular sprite rendering logic
 - [ ] Inject dynamic developer social hyperlinks straight into the game interface
 
 ---

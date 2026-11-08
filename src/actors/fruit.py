@@ -11,6 +11,7 @@ class Fruit:
         self.pos = 0
 
         self.configs = configs
+        self.image = configs.sprite("apple")
         self.randomize()
 
     def draw_fruit(self):
@@ -20,7 +21,7 @@ class Fruit:
             self.configs.cell_size,
             self.configs.cell_size,
         )
-        self.configs.screen.blit(self.configs.apple, fruit_rect)
+        self.configs.screen.blit(self.image, fruit_rect)
 
     def randomize(self, occupied=()):
         # Only pick cells not covered by the snake

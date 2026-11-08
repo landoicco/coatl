@@ -86,7 +86,7 @@ class Game:
         )
         score_y = int(self.configs.cell_size * self.configs.cell_number - 15)
         score_rect = score_surface.get_rect(midbottom=(score_x, score_y))
-        apple_rect = self.configs.apple.get_rect(
+        apple_rect = self.fruit.image.get_rect(
             midright=(score_rect.left, score_rect.centery)
         )
         bg_rect = pygame.Rect(
@@ -98,5 +98,5 @@ class Game:
 
         pygame.draw.rect(self.configs.screen, Color.BACKGROUND, bg_rect)
         self.configs.screen.blit(score_surface, score_rect)
-        self.configs.screen.blit(self.configs.apple, apple_rect)
+        self.configs.screen.blit(self.fruit.image, apple_rect)
         pygame.draw.rect(self.configs.screen, (0, 0, 0), bg_rect, 2)
