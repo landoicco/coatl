@@ -1,14 +1,19 @@
 import sys
+
 import pygame
-import random
 from pygame.math import Vector2
 
-from core import *
-from actors import *
-
+from core import Color, Configs, Game, show_splash_screen
 
 SCREEN_UPDATE = pygame.USEREVENT
 pygame.time.set_timer(SCREEN_UPDATE, 150)
+
+KEY_DIRECTIONS = {
+    pygame.K_UP: Vector2(0, -1),
+    pygame.K_DOWN: Vector2(0, 1),
+    pygame.K_LEFT: Vector2(-1, 0),
+    pygame.K_RIGHT: Vector2(1, 0),
+}
 
 # Init Game class
 main_game = Game(Configs)
@@ -28,19 +33,8 @@ while True:
         if event.type == SCREEN_UPDATE:
             main_game.update()
 
-        if event.type == pygame.KEYDOWN:
-            if event.key == pygame.K_UP:
-                if main_game.snake.direction.y != 1:
-                    main_game.snake.direction = Vector2(0, -1)
-            if event.key == pygame.K_DOWN:
-                if main_game.snake.direction.y != -1:
-                    main_game.snake.direction = Vector2(0, 1)
-            if event.key == pygame.K_LEFT:
-                if main_game.snake.direction.x != 1:
-                    main_game.snake.direction = Vector2(-1, 0)
-            if event.key == pygame.K_RIGHT:
-                if main_game.snake.direction.x != -1:
-                    main_game.snake.direction = Vector2(1, 0)
+        if event.type == pygame.KEYDOWN and event.key in KEY_DIRECTIONS:
+            main_game.snake.change_direction(KEY_DIRECTIONS[event.key])
 
     Configs.screen.fill(Color.WALL_PRIMARY)
     main_game.draw_elements()

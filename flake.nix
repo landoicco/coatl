@@ -1,5 +1,5 @@
 {
-  description = "Coatl - A classic snake clone made with Python and Pygame";
+  description = "Coatl - A classic Snake game made with Python and Pygame-CE";
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
@@ -20,7 +20,7 @@
           # Python development environment with pinned dependencies matching pyproject.toml
           (pkgs.python3.withPackages (ps: [
             ps.pygame-ce   # Optimized community edition of Pygame (recommended for NixOS)
-            ps.pyinstaller # For compiling the game into a standalone binary later
+            ps.pyinstaller # For compiling the game into a standalone binary
             ps.ruff        # Fast linter and formatter declared in your dev-dependencies
           ]))
         ];
@@ -34,7 +34,7 @@
           echo " 📦 PyInstaller: Enabled"
           echo " 🐙 GitHub CLI:  $(gh --version | head -n 1)"
           echo "================================================="
-          echo "🚀 Run your game using: python main.py"
+          echo "🚀 Run your game using: python src/main.py"
         '';
       };
     };
