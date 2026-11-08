@@ -1,5 +1,10 @@
 # Coatl 🐍
 
+![Python Version](https://shields.io)
+![Pygame Version](https://shields.io)
+![Nix Flakes](https://shields.io)
+![Linter](https://shields.io)
+
 A polished, classic **Snake-like arcade game** built from scratch with Python and Pygame. 
 
 This project serves as a learning milestone focused on clean code structure, environment reproducibility, audio integration, and modern development tooling.
@@ -52,7 +57,12 @@ uv run src/main.py
 - [x] Migrate ecosystem to high-performance dependency tracking
 - [x] Implement smooth Splash Screen and Game Over flows
 - [x] Add dynamic background audio tracks
-- [ ] Overhaul general UI look, text scaling, and feel
+- [x] Overhaul general UI look, text scaling, and feel
+- [ ] Setup a CI/CD Pipeline (GitHub Actions) to auto-build Windows (.exe) and Linux binaries
 - [ ] Optimize modular sprite rendering logic
-- [ ] Integrate test suites and coverage verification
 - [ ] Inject dynamic developer social hyperlinks straight into the game interface
+
+---
+
+## 🎨 Credits & Assets
+* **Audio, Music & Graphics:** Sound effects, background music tracks, and visual templates were sourced from open-source creators on the [OpenGameArt](https://opengameart.org) community platform and utilized under free-to-use/open licenses.

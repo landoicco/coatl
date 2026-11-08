@@ -1,6 +1,6 @@
 [project]
 name = "Coatl"
-version = "0.1.0"
+version = "2.0.0"
 description = "A classic snake like clone made with Python and Pygame"
 readme = "README.md"
 requires-python = ">=3.11"
