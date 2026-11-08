@@ -1,3 +1,5 @@
+import sys
+
 import pygame
 from .configs import *
 
@@ -19,7 +21,7 @@ def show_splash_screen():
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 pygame.quit()
-                exit()
+                sys.exit()
             # Any key press exits this loop and starts the game
             if event.type == pygame.KEYDOWN:
                 waiting = False

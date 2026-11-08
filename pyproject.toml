@@ -9,11 +9,11 @@ authors = [
 ]
 
 dependencies = [
-    "pygame>=2.6.1",
-    "pyinstaller>=6.17.0",
+    "pygame-ce>=2.5.0",
 ]
 
 [dependency-groups]
 dev = [
+    "pyinstaller>=6.17.0",
     "ruff>=0.14.10",
 ]

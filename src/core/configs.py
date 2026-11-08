@@ -1,4 +1,14 @@
+import sys
+from pathlib import Path
+
 import pygame
+
+
+# PyInstaller unpacks bundled data into sys._MEIPASS; otherwise use the repo root
+if getattr(sys, "frozen", False):
+    BASE_PATH = Path(sys._MEIPASS)
+else:
+    BASE_PATH = Path(__file__).resolve().parents[2]
 
 
 # Contains all shared data between classes
@@ -8,8 +18,8 @@ class Configs:
     cell_number = 20
 
     # Paths to assets
-    sprites_path = "assets/sprites/"
-    assets_path = "assets/"
+    assets_path = str(BASE_PATH / "assets") + "/"
+    sprites_path = assets_path + "sprites/"
 
     # Pygame configs
     pygame.mixer.pre_init(44100, -16, 2, 512)
