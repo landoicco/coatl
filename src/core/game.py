@@ -1,7 +1,9 @@
 import pygame
 
-from actors import *
-from core import Color, Font, show_splash_screen
+from actors import Fruit, Snake
+
+from .configs import Color, Font
+from .splash import show_splash_screen
 
 
 class Game:
@@ -10,6 +12,7 @@ class Game:
 
         self.snake = Snake(configs)
         self.fruit = Fruit(configs)
+        self.fruit.randomize(self.snake.body)
 
         # Play bg music
         pygame.mixer.music.play(-1)  # Loop
@@ -28,12 +31,8 @@ class Game:
     def check_collisions(self):
         if self.fruit.pos == self.snake.body[0]:
             self.snake.play_crunch_sound()
-            self.fruit.randomize()
+            self.fruit.randomize(self.snake.body)
             self.snake.add_block()
-
-        for block in self.snake.body[1:]:
-            if block == self.fruit.pos:
-                self.fruit.randomize()
 
     def check_fail(self):
         if (
@@ -71,10 +70,12 @@ class Game:
 
     def game_over(self):
         # Draw splash screen on game over
-        if len(self.snake.body) > 3:
-            show_splash_screen()
+        score = len(self.snake.body) - 3
+        if score > 0:
+            show_splash_screen(score)
 
         self.snake.reset()
+        self.fruit.randomize(self.snake.body)
 
     def draw_score(self):
         score_text = str(len(self.snake.body) - 3)

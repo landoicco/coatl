@@ -34,7 +34,7 @@
           echo " 📦 PyInstaller: Enabled"
           echo " 🐙 GitHub CLI:  $(gh --version | head -n 1)"
           echo "================================================="
-          echo "🚀 Run your game using: python main.py"
+          echo "🚀 Run your game using: python src/main.py"
         '';
       };
     };

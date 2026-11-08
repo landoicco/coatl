@@ -6,8 +6,8 @@ Provides UI and Gameplay utilities.
 __version__ = "2.0.0"
 __author__ = "Lando Icaza C."
 
-from .splash import *
 from .configs import *
 from .game import Game
+from .splash import *
 
-__all__ = ["Configs", "Color", "Font", "Game", "show_splash_screen"]
+__all__ = ["Color", "Configs", "Font", "Game", "show_splash_screen"]

@@ -3,7 +3,6 @@ from pathlib import Path
 
 import pygame
 
-
 # PyInstaller unpacks bundled data into sys._MEIPASS; otherwise use the repo root
 if getattr(sys, "frozen", False):
     BASE_PATH = Path(sys._MEIPASS)

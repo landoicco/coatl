@@ -6,6 +6,7 @@ class Snake:
     def __init__(self, configs):
         self.body = [Vector2(5, 10), Vector2(4, 10), Vector2(3, 10)]
         self.direction = Vector2(0, 0)
+        self.next_direction = Vector2(0, 0)
         self.new_block = False
         self.configs = configs
 
@@ -126,7 +127,19 @@ class Snake:
         elif tail_relation == Vector2(0, -1):
             self.tail = self.tail_up
 
+    def change_direction(self, direction):
+        # Applied on the next move, so several key presses in one tick can't reverse the snake
+        self.next_direction = direction
+
     def move_snake(self):
+        # Ignore directions that would turn the head back into the body
+        if self.body[0] + self.next_direction != self.body[1]:
+            self.direction = self.next_direction
+
+        # Stay still until the player picks a first direction
+        if self.direction == Vector2(0, 0):
+            return
+
         body_copy = self.body[:-1]
         if self.new_block:
             self.new_block = False
@@ -154,3 +167,4 @@ class Snake:
     def reset(self):
         self.body = [Vector2(5, 10), Vector2(4, 10), Vector2(3, 10)]
         self.direction = Vector2(0, 0)
+        self.next_direction = Vector2(0, 0)
