@@ -55,6 +55,7 @@ uv run src/main.py
 ### Controls 🎮
 * **Arrow keys:** Move the snake
 * **Any key:** Start or restart from the splash screen
+* **Click the link on the splash screen:** Open the developer's portfolio
 
 ---
 
@@ -74,9 +75,10 @@ uv run src/main.py
 - [x] Overhaul general UI look, text scaling, and feel
 - [x] Setup a CI/CD Pipeline (GitHub Actions) to auto-build Windows (.exe) and Linux binaries
 - [x] Optimize modular sprite rendering logic
-- [ ] Inject dynamic developer social hyperlinks straight into the game interface
+- [x] Add a clickable developer portfolio link to the game interface
 
 ---
 
 ## 🎨 Credits & Assets
+* **Developed by:** Lando Icaza C. — [licaza.dev](https://licaza.dev)
 * **Audio, Music & Graphics:** Sound effects, background music tracks, and visual templates were sourced from open-source creators on the [OpenGameArt](https://opengameart.org) community platform and utilized under free-to-use/open licenses.

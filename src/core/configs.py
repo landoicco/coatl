@@ -39,6 +39,9 @@ class Configs:
     # Paths to assets
     assets_path = str(BASE_PATH / "assets") + "/"
 
+    # Author's portfolio, linked from the splash screen
+    portfolio_url = "https://licaza.dev"
+
     # Pygame configs
     pygame.mixer.pre_init(44100, -16, 2, 512)
     pygame.init()

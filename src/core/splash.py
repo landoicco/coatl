@@ -1,8 +1,17 @@
 import sys
+import webbrowser
 
 import pygame
 
 from .configs import Color, Configs, Font
+
+
+def set_cursor(cursor):
+    # The cursor is cosmetic; some video drivers can't create system cursors
+    try:
+        pygame.mouse.set_cursor(cursor)
+    except pygame.error:
+        pass
 
 
 #####################
@@ -29,9 +38,16 @@ def show_splash_screen(score=None):
         surf = font.render(text, True, color)
         rendered.append((surf, surf.get_rect(midtop=(center_x, y))))
 
+    # Portfolio link, shown without the scheme; highlighted and underlined on hover
+    link_text = Configs.portfolio_url.removeprefix("https://")
+    link_surf = Font.SUBHEADER.render(link_text, True, Color.PRIMARY)
+    link_hover_surf = Font.SUBHEADER.render(link_text, True, Color.SECONDARY)
+    link_rect = link_surf.get_rect(midtop=(center_x, 215))
+
     # Drop keys pressed before the splash appeared so they don't dismiss it instantly
     pygame.event.clear(pygame.KEYDOWN)
 
+    hovering = False
     waiting = True
     while waiting:
         for event in pygame.event.get():
@@ -41,10 +57,40 @@ def show_splash_screen(score=None):
             # Any key press exits this loop and starts the game
             if event.type == pygame.KEYDOWN:
                 waiting = False
+            # Clicking the link opens it in the browser without starting the game
+            if (
+                event.type == pygame.MOUSEBUTTONDOWN
+                and event.button == 1
+                and link_rect.collidepoint(event.pos)
+            ):
+                webbrowser.open(Configs.portfolio_url)
+
+        was_hovering = hovering
+        hovering = link_rect.collidepoint(pygame.mouse.get_pos())
+        if hovering != was_hovering:
+            set_cursor(
+                pygame.SYSTEM_CURSOR_HAND if hovering else pygame.SYSTEM_CURSOR_ARROW
+            )
 
         Configs.screen.fill(Color.BACKGROUND)
         for surf, rect in rendered:
             Configs.screen.blit(surf, rect)
 
+        if hovering:
+            Configs.screen.blit(link_hover_surf, link_rect)
+            underline_y = link_rect.bottom - 1
+            pygame.draw.line(
+                Configs.screen,
+                Color.SECONDARY,
+                (link_rect.left, underline_y),
+                (link_rect.right - 1, underline_y),
+            )
+        else:
+            Configs.screen.blit(link_surf, link_rect)
+
         pygame.display.flip()
         Configs.clock.tick(60)
+
+    # Restore the default cursor if the game starts while hovering the link
+    if hovering:
+        set_cursor(pygame.SYSTEM_CURSOR_ARROW)
