@@ -82,6 +82,7 @@ uv run src/main.py
 
 ## 🎨 Credits & Assets
 * **Developed by:** Lando Icaza C. — [licaza.dev](https://licaza.dev)
+* **Origin:** Started by following Clear Code's [Snake game tutorial](https://youtu.be/QFvqStqPCRU), then extended with spritesheet rendering, sound effects and music, and a CI/CD pipeline.
 * **Tooling:** The original game was written by hand; the v2.0.0 polish (CI/CD pipeline, gameplay fixes, spritesheet refactor and docs) was done with [Claude Code](https://claude.com/claude-code) as a pair-programming assistant.
 * **Graphics, Music & Sound Effects:** CC0 assets by Clear_code, Sketlux, Memoraphile @ You're Perfect Studio and AntumDeluge, found on [OpenGameArt](https://opengameart.org).
 * **Font:** [Atkinson Hyperlegible Mono](https://github.com/googlefonts/atkinson-hyperlegible-next-mono) by the Braille Institute, under the SIL Open Font License 1.1.

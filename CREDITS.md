@@ -2,6 +2,8 @@
 
 Coatl is developed by Lando Icaza C. ([licaza.dev](https://licaza.dev)).
 
+The project started by following Clear Code's [Snake game tutorial](https://youtu.be/QFvqStqPCRU) and was extended afterwards with a single-spritesheet renderer, sound effects and background music, and a CI/CD pipeline that builds Linux and Windows binaries.
+
 The game uses the following third-party assets. Many thanks to their authors for sharing their work.
 
 ## Graphics
@@ -18,7 +20,7 @@ The game uses the following third-party assets. Many thanks to their authors for
 | File | Asset | Author | License |
 |---|---|---|---|
 | `assets/gone-fishing.mp3` | [Gone Fishin'](https://opengameart.org/content/gone-fishin) | Memoraphile @ You're Perfect Studio | [CC0 1.0](https://creativecommons.org/publicdomain/zero/1.0/) |
-| `assets/apple_bite.ogg` | [Apple Bite](https://opengameart.org/content/apple-bite) | AntumDeluge, extracted from [freesound.org/s/333825](https://freesound.org/s/333825/) | [CC0 1.0](https://creativecommons.org/publicdomain/zero/1.0/) |
+| `assets/apple_bite.ogg` | [Apple Bite](https://opengameart.org/content/apple-bite) | AntumDeluge, extracted from [apple bite](https://freesound.org/s/333825/) by sonicmariobrotha | [CC0 1.0](https://creativecommons.org/publicdomain/zero/1.0/) |
 
 ## Fonts
 
