@@ -2,6 +2,7 @@
 
 [![Build](https://github.com/landoicco/coatl/actions/workflows/build.yml/badge.svg?branch=master)](https://github.com/landoicco/coatl/actions/workflows/build.yml)
 [![Python](https://img.shields.io/badge/python-3.11%2B-blue?logo=python&logoColor=white)](https://www.python.org/downloads/)
+[![License: MIT](https://img.shields.io/badge/license-MIT-green)](LICENSE)
 
 A polished, classic **Snake-like arcade game** built from scratch with Python and Pygame.
 
@@ -82,4 +83,12 @@ uv run src/main.py
 ## 🎨 Credits & Assets
 * **Developed by:** Lando Icaza C. — [licaza.dev](https://licaza.dev)
 * **Tooling:** The original game was written by hand; the v2.0.0 polish (CI/CD pipeline, gameplay fixes, spritesheet refactor and docs) was done with [Claude Code](https://claude.com/claude-code) as a pair-programming assistant.
-* **Audio, Music & Graphics:** Sound effects, background music tracks, and visual templates were sourced from open-source creators on the [OpenGameArt](https://opengameart.org) community platform and utilized under free-to-use/open licenses.
+* **Graphics, Music & Sound Effects:** CC0 assets by Clear_code, Sketlux, Memoraphile @ You're Perfect Studio and AntumDeluge, found on [OpenGameArt](https://opengameart.org).
+* **Font:** [Atkinson Hyperlegible Mono](https://github.com/googlefonts/atkinson-hyperlegible-next-mono) by the Braille Institute, under the SIL Open Font License 1.1.
+
+See [CREDITS.md](CREDITS.md) for the full list of assets, links and licenses.
+
+---
+
+## 📄 License
+The source code is released under the [MIT License](LICENSE). Third-party assets keep their own licenses, listed in [CREDITS.md](CREDITS.md).

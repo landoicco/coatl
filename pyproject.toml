@@ -4,6 +4,8 @@ version = "2.0.0"
 description = "A classic Snake game made with Python and Pygame-CE"
 readme = "README.md"
 requires-python = ">=3.11"
+license = "MIT"
+license-files = ["LICENSE"]
 authors = [
   {name = "Lando Icaza C.", email = "landoicco@gmail.com"}
 ]
