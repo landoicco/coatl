@@ -6,6 +6,8 @@ on:
       - master
       - main
   pull_request: # Build on every PR to validate it before merging (no publishing)
+  release:
+    types: [published] # Attach the binaries to every versioned release
   workflow_dispatch: # Allows triggering it manually from the Actions tab on any branch
 
 permissions:
@@ -18,11 +20,16 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        include: # Spins up clean Linux and Windows runners in parallel
+        include: # Spins up clean Linux, macOS and Windows runners in parallel
           - os: ubuntu-latest
             binary: coatl-linux
+            artifact: dist/coatl-linux
+          - os: macos-latest # Apple Silicon (arm64) runner
+            binary: coatl-macos
+            artifact: dist/coatl-macos.zip
           - os: windows-latest
             binary: coatl-windows
+            artifact: dist/coatl-windows.exe
 
     steps:
       - name: "🗂️ Checkout Code"
@@ -39,32 +46,34 @@ jobs:
           pip install "pygame-ce>=2.5.0" "pyinstaller>=6.17.0" # Same versions as pyproject.toml
 
       - name: "⚡ Compile with PyInstaller"
+        if: runner.os != 'macOS'
         # --add-data bundles the assets/ folder into the binary (the ':' separator works on every platform since PyInstaller 6)
         run: |
           pyinstaller --onefile --windowed --name ${{ matrix.binary }} --add-data "assets:assets" src/main.py
+
+      - name: "🍎 Compile macOS App Bundle"
+        if: runner.os == 'macOS'
+        # macOS gets a .app bundle (onefile .app is deprecated in PyInstaller); ditto zips it keeping symlinks
+        run: |
+          pyinstaller --onedir --windowed --name ${{ matrix.binary }} --add-data "assets:assets" src/main.py
+          ditto -c -k --keepParent dist/${{ matrix.binary }}.app ${{ matrix.artifact }}
 
       - name: "📤 Upload Artifacts to Workflow Run"
         uses: actions/upload-artifact@v4 # Temporarily stores the binaries in the workflow run
         with:
           name: coatl-binary-${{ matrix.os }}
-          path: dist/${{ matrix.binary }}*
+          path: ${{ matrix.artifact }}
           if-no-files-found: error
 
   publish:
-    name: "🌐 Publish Rolling Release"
+    name: "🌐 Publish Binaries"
     needs: build
-    # Only publish on push to master/main; PRs and manual runs just build
-    if: github.event_name == 'push'
+    # Only publish on push to master/main and on releases; PRs and manual runs just build
+    if: github.event_name == 'push' || github.event_name == 'release'
     runs-on: ubuntu-latest
     steps:
       - name: "🗂️ Checkout Code"
         uses: actions/checkout@v4
-
-      - name: "🏷️ Move 'latest' Tag to Current Commit"
-        # Without this the tag stays on its first commit and the release points to stale code
-        run: |
-          git tag -f latest
-          git push -f origin latest
 
       - name: "📥 Download All Binaries"
         uses: actions/download-artifact@v4 # Fetches the binaries built in the previous job
@@ -72,7 +81,15 @@ jobs:
           path: dist-merged
           merge-multiple: true
 
+      - name: "🏷️ Move 'latest' Tag to Current Commit"
+        if: github.event_name == 'push'
+        # Without this the tag stays on its first commit and the release points to stale code
+        run: |
+          git tag -f latest
+          git push -f origin latest
+
       - name: "🚀 Create or Update Rolling Release"
+        if: github.event_name == 'push'
         uses: softprops/action-gh-release@v2 # Uploads the files to the repository's public Releases page
         with:
           tag_name: "latest"
@@ -80,8 +97,13 @@ jobs:
           body: "This release automatically compiles the latest commits from the master branch. Download the binary corresponding to your OS below!"
           draft: false
           prerelease: true # Marked as pre-release since it's a continuous automated build
-          files: |
-            dist-merged/coatl-linux
-            dist-merged/coatl-windows.exe
+          files: dist-merged/*
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # Automatic token provided by GitHub
+
+      - name: "📦 Attach Binaries to Versioned Release"
+        if: github.event_name == 'release'
+        # Adds the files to the release that triggered the run, keeping its title and notes
+        run: gh release upload "${{ github.event.release.tag_name }}" dist-merged/* --clobber
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
