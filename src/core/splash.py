@@ -3,7 +3,7 @@ import webbrowser
 
 import pygame
 
-from .configs import Color, Configs, Font
+from .configs import VERSION, Color, Configs, Font
 
 
 def set_cursor(cursor):
@@ -30,6 +30,7 @@ def show_splash_screen(score=None):
         text_data.append((f"Game over! Score: {score}", Font.GAME, Color.PRIMARY, 350))
         prompt = "Press any key to play again"
     text_data.append((prompt, Font.GAME, Color.SECONDARY, 500))
+    text_data.append((f"v{VERSION}", Font.SUBHEADER, Color.SECONDARY, 770))
 
     # Render text once, horizontally centered
     center_x = Configs.screen.get_width() // 2

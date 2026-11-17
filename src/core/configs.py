@@ -1,4 +1,5 @@
 import sys
+import tomllib
 from pathlib import Path
 
 import pygame
@@ -8,6 +9,11 @@ if getattr(sys, "frozen", False):
     BASE_PATH = Path(sys._MEIPASS)
 else:
     BASE_PATH = Path(__file__).resolve().parents[2]
+
+# pyproject.toml is the single source of the version (bundled next to assets/)
+VERSION = tomllib.loads((BASE_PATH / "pyproject.toml").read_text())["project"][
+    "version"
+]
 
 # Spritesheet layout: sprite name -> (column, row) in a grid of SPRITE_SIZE cells
 SPRITE_SIZE = 40

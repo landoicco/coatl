@@ -29,7 +29,7 @@ jobs:
             artifact: dist/coatl-macos.zip
           - os: windows-latest
             binary: coatl-windows
-            artifact: dist/coatl-windows.exe
+            artifact: dist/coatl-windows.zip
 
     steps:
       - name: "🗂️ Checkout Code"
@@ -46,16 +46,25 @@ jobs:
           pip install "pygame-ce>=2.5.0" "pyinstaller>=6.17.0" # Same versions as pyproject.toml
 
       - name: "⚡ Compile with PyInstaller"
-        if: runner.os != 'macOS'
-        # --add-data bundles the assets/ folder into the binary (the ':' separator works on every platform since PyInstaller 6)
+        if: runner.os == 'Linux'
+        # --add-data bundles assets/ and pyproject.toml (read for the version) into the binary
+        # (the ':' separator works on every platform since PyInstaller 6)
         run: |
-          pyinstaller --onefile --windowed --name ${{ matrix.binary }} --add-data "assets:assets" src/main.py
+          pyinstaller --onefile --windowed --name ${{ matrix.binary }} --add-data "assets:assets" --add-data "pyproject.toml:." src/main.py
+
+      - name: "🪟 Compile Windows App Folder"
+        if: runner.os == 'Windows'
+        # A zipped folder instead of --onefile: the onefile bootloader unpacking itself into %TEMP%
+        # is a common reason browsers and antivirus flag PyInstaller games
+        run: |
+          pyinstaller --onedir --windowed --name ${{ matrix.binary }} --icon packaging/icon.ico --add-data "assets:assets" --add-data "pyproject.toml:." src/main.py
+          7z a ${{ matrix.artifact }} ./dist/${{ matrix.binary }}
 
       - name: "🍎 Compile macOS App Bundle"
         if: runner.os == 'macOS'
         # macOS gets a .app bundle (onefile .app is deprecated in PyInstaller); ditto zips it keeping symlinks
         run: |
-          pyinstaller --onedir --windowed --name ${{ matrix.binary }} --add-data "assets:assets" src/main.py
+          pyinstaller --onedir --windowed --name ${{ matrix.binary }} --icon packaging/icon.icns --add-data "assets:assets" --add-data "pyproject.toml:." src/main.py
           ditto -c -k --keepParent dist/${{ matrix.binary }}.app ${{ matrix.artifact }}
 
       - name: "📤 Upload Artifacts to Workflow Run"
