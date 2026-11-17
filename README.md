@@ -16,7 +16,7 @@ Get the binary for your OS from the [latest release](https://github.com/landoicc
 | --- | --- | --- |
 | Linux | `coatl-linux` | Run `chmod +x coatl-linux` first |
 | macOS (Apple Silicon) | `coatl-macos.zip` | Unzip, then right-click `coatl-macos.app` → **Open** the first time (the app is not signed) |
-| Windows | `coatl-windows.exe` | If SmartScreen warns, click **More info** → **Run anyway** |
+| Windows | `coatl-windows.zip` | Unzip, then run `coatl-windows.exe` inside the folder. If SmartScreen warns, click **More info** → **Run anyway** |
 
 ## 🚀 Run from source
 
