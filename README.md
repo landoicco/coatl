@@ -8,6 +8,8 @@ A classic **Snake** arcade game built with Python and Pygame-CE, with music, sou
 
 > **Coatl** is the Nahuatl word for *snake* ([Gran Diccionario Náhuatl](https://gdn.iib.unam.mx/diccionario/coatl/111897)).
 
+> **Status:** feature-complete. No new gameplay is planned; only maintenance (builds, docs, dependencies) from here on.
+
 ## 📦 Download
 
 Get the binary for your OS from the [latest release](https://github.com/landoicco/coatl/releases/latest), or from the [rolling build](https://github.com/landoicco/coatl/releases/tag/latest) of `master`. No Python needed.
